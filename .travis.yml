@@ -1,0 +1,22 @@
+sudo: required
+
+services:
+- docker
+
+archlinux:
+  # base-devel, git and yay are already available by default
+  packages:
+  - arch-install-scripts
+  - haveged
+  - aws-cli
+  mount:
+  - ~/.pkg-cache:/var/cache/pacman/pkg
+  #before_install:
+  #- "git clone https://github.com/fsquillace/junest-vagrant.git ~/junest-vagrant"
+  #- "cd ~/junest-vagrant"
+  #- "./bootstrap.sh"
+  script:
+  - "./build_junest.sh"
+
+script:
+- "curl -s https://raw.githubusercontent.com/mikkeloscar/arch-travis/master/arch-travis.sh | bash"
